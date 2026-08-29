@@ -204,23 +204,19 @@ export const DigitalMenuSection: React.FC<DigitalMenuSectionProps> = ({
           </Button>
         </div>
       ) : (
-        <motion.div
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          <AnimatePresence>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AnimatePresence mode="popLayout">
             {filteredItems.map((dish) => {
               const isSaved = savedItemIds.has(dish.id);
 
               return (
                 <motion.div
-                  layout
                   key={dish.id}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3 }}
-                  className="group relative rounded-3xl bg-charcoal-900/90 border border-white/10 hover:border-gold-500/40 transition-all duration-300 hover:shadow-2xl hover:shadow-black/80 flex flex-col justify-between overflow-hidden cursor-pointer"
+                  transition={{ duration: 0.25, ease: 'easeOut' }}
+                  className="group relative rounded-3xl bg-charcoal-900/90 border border-white/10 dish-card-hover tap-bounce flex flex-col justify-between overflow-hidden cursor-pointer gpu-layer"
                   onClick={() => onOpenDishModal(dish)}
                 >
                   {/* Top Image Container */}
@@ -229,7 +225,11 @@ export const DigitalMenuSection: React.FC<DigitalMenuSectionProps> = ({
                       src={dish.image}
                       alt={dish.name}
                       loading="lazy"
-                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 brightness-90 group-hover:brightness-100"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src =
+                          'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80';
+                      }}
+                      className="w-full h-full object-cover object-center sm:group-hover:scale-105 transition-transform duration-500 brightness-90 sm:group-hover:brightness-100"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900 via-transparent to-black/30" />
 
@@ -249,10 +249,10 @@ export const DigitalMenuSection: React.FC<DigitalMenuSectionProps> = ({
                         e.stopPropagation();
                         onToggleSaveItem(dish);
                       }}
-                      className={`absolute top-3.5 right-3.5 p-2 rounded-full backdrop-blur-md border transition-all ${
+                      className={`absolute top-3.5 right-3.5 p-2 rounded-full backdrop-blur-md border transition-colors ${
                         isSaved
                           ? 'bg-gold-500 text-obsidian-950 border-gold-400'
-                          : 'bg-black/50 text-white/80 border-white/10 hover:text-gold-300 hover:bg-black/70'
+                          : 'bg-black/50 text-white/80 border-white/10 hover:text-gold-300 hover:bg-black/70 active:scale-90'
                       }`}
                       title={isSaved ? 'Remove from Tasting List' : 'Add to Tasting List'}
                     >
@@ -278,7 +278,7 @@ export const DigitalMenuSection: React.FC<DigitalMenuSectionProps> = ({
                       </div>
 
                       {/* Name */}
-                      <h3 className="text-base font-display font-bold text-white group-hover:text-gold-300 transition-colors leading-snug line-clamp-1">
+                      <h3 className="text-base font-display font-bold text-white sm:group-hover:text-gold-300 transition-colors leading-snug line-clamp-1">
                         {dish.name}
                       </h3>
 
@@ -298,7 +298,7 @@ export const DigitalMenuSection: React.FC<DigitalMenuSectionProps> = ({
                         <span />
                       )}
 
-                      <span className="text-[11px] text-slate-400 font-semibold flex items-center gap-1 group-hover:text-gold-300 transition-colors">
+                      <span className="text-[11px] text-slate-400 font-semibold flex items-center gap-1 sm:group-hover:text-gold-300 transition-colors">
                         <Eye className="h-3.5 w-3.5" />
                         Details
                       </span>
@@ -308,7 +308,7 @@ export const DigitalMenuSection: React.FC<DigitalMenuSectionProps> = ({
               );
             })}
           </AnimatePresence>
-        </motion.div>
+        </div>
       )}
     </section>
   );

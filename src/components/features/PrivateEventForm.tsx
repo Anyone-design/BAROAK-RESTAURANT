@@ -52,11 +52,16 @@ export const PrivateEventForm: React.FC = () => {
   const validate = (): boolean => {
     const err: Record<string, string> = {};
     if (!formData.name.trim()) err.name = 'Organizer name is required';
-    if (!formData.phone.trim() || formData.phone.length < 10) {
-      err.phone = 'Valid phone number is required';
+    if (!formData.phone.trim()) {
+      err.phone = 'Mobile number is required';
+    } else if (formData.phone.length !== 10) {
+      err.phone = 'Please enter a 10-digit mobile number';
+    } else if (!/^[6-9]\d{9}$/.test(formData.phone)) {
+      err.phone = 'Please enter a valid 10-digit number (starts with 6, 7, 8 or 9)';
     }
-    if (!formData.email.trim() || !formData.email.includes('@')) {
-      err.email = 'Valid email is required';
+
+    if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      err.email = 'Valid email is required (e.g. name@company.com)';
     }
     if (!formData.preferredDate) err.preferredDate = 'Please select a preferred date';
     setErrors(err);
@@ -268,30 +273,69 @@ export const PrivateEventForm: React.FC = () => {
           <div className="space-y-1">
             <input
               type="text"
+              autoComplete="name"
               placeholder="Host Full Name *"
               value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full bg-charcoal-800/80 border border-white/10 rounded-2xl px-4 py-3 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-gold-500/60"
+              onChange={(e) => {
+                setFormData({ ...formData, name: e.target.value });
+                if (errors.name) {
+                  setErrors((prev) => {
+                    const c = { ...prev };
+                    delete c.name;
+                    return c;
+                  });
+                }
+              }}
+              className="w-full bg-charcoal-800/80 border border-white/10 rounded-2xl px-4 py-3 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-gold-500/60 transition-colors"
             />
             {errors.name && <p className="text-[11px] text-red-400">{errors.name}</p>}
           </div>
           <div className="space-y-1">
-            <input
-              type="tel"
-              placeholder="Host Phone / WhatsApp *"
-              value={formData.phone}
-              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              className="w-full bg-charcoal-800/80 border border-white/10 rounded-2xl px-4 py-3 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-gold-500/60"
-            />
+            <div className="relative flex items-center">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[11px] font-bold text-gold-400 select-none pointer-events-none border-r border-white/10 pr-2">
+                +91
+              </span>
+              <input
+                type="tel"
+                inputMode="numeric"
+                pattern="[0-9]{10}"
+                maxLength={10}
+                autoComplete="tel-national"
+                placeholder="Phone (10 digits) *"
+                value={formData.phone}
+                onChange={(e) => {
+                  const val = e.target.value.replace(/\D/g, '').slice(0, 10);
+                  setFormData({ ...formData, phone: val });
+                  if (errors.phone) {
+                    setErrors((prev) => {
+                      const c = { ...prev };
+                      delete c.phone;
+                      return c;
+                    });
+                  }
+                }}
+                className="w-full bg-charcoal-800/80 border border-white/10 rounded-2xl pl-13 pr-3 py-3 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-gold-500/60 font-mono transition-colors"
+              />
+            </div>
             {errors.phone && <p className="text-[11px] text-red-400">{errors.phone}</p>}
           </div>
           <div className="space-y-1">
             <input
               type="email"
+              autoComplete="email"
               placeholder="Company / Work Email *"
               value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="w-full bg-charcoal-800/80 border border-white/10 rounded-2xl px-4 py-3 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-gold-500/60"
+              onChange={(e) => {
+                setFormData({ ...formData, email: e.target.value });
+                if (errors.email) {
+                  setErrors((prev) => {
+                    const c = { ...prev };
+                    delete c.email;
+                    return c;
+                  });
+                }
+              }}
+              className="w-full bg-charcoal-800/80 border border-white/10 rounded-2xl px-4 py-3 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-gold-500/60 transition-colors"
             />
             {errors.email && <p className="text-[11px] text-red-400">{errors.email}</p>}
           </div>

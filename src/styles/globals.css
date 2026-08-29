@@ -16,12 +16,15 @@
     scroll-behavior: smooth;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     color-scheme: dark;
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
     background-color: #08090C;
     color: #F1F5F9;
     overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
   }
 
   /* Custom luxury scrollbar */
@@ -42,27 +45,36 @@
 }
 
 @layer utilities {
+  .gpu-layer {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+  }
+
   .glass-card {
-    background: rgba(18, 20, 28, 0.7);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(18, 20, 28, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-  .glass-card-hover {
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .glass-card-hover:hover {
-    background: rgba(26, 29, 40, 0.85);
-    border-color: rgba(212, 175, 55, 0.3);
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 20px -5px rgba(212, 175, 55, 0.15);
+  @supports (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px)) {
+    .glass-card {
+      background: rgba(18, 20, 28, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
   }
 
   .glass-nav {
-    background: rgba(8, 9, 12, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(8, 9, 12, 0.92);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  @supports (backdrop-filter: blur(16px)) or (-webkit-backdrop-filter: blur(16px)) {
+    .glass-nav {
+      background: rgba(8, 9, 12, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
   }
 
   .text-gold-gradient {
@@ -88,5 +100,25 @@
   .gold-border-glow {
     border-color: rgba(212, 175, 55, 0.4);
     box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+  }
+
+  /* Smooth card tap for touch devices without lingering hover lag */
+  .tap-bounce {
+    transition: transform 0.15s ease-out;
+  }
+  .tap-bounce:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Scoped hover interactions so mobile taps don't freeze or feel choppy */
+@media (hover: hover) and (pointer: fine) {
+  .dish-card-hover {
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  }
+  .dish-card-hover:hover {
+    border-color: rgba(212, 175, 55, 0.4);
+    box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.9), 0 0 20px -6px rgba(212, 175, 55, 0.2);
+    transform: translateY(-3px);
   }
 }

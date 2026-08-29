@@ -54,18 +54,23 @@ export const VibeShowcaseSection: React.FC<VibeShowcaseSectionProps> = ({
           return (
             <motion.div
               key={item.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              viewport={{ once: true, margin: '-30px' }}
+              transition={{ duration: 0.4, delay: idx * 0.08 }}
               onClick={() => setSelectedVibe(item)}
-              className={`group relative rounded-3xl overflow-hidden cursor-pointer border border-white/10 hover:border-gold-500/50 shadow-2xl transition-all ${spanClass}`}
+              className={`group relative rounded-3xl overflow-hidden cursor-pointer border border-white/10 hover:border-gold-500/50 shadow-2xl tap-bounce gpu-layer ${spanClass}`}
             >
               {/* Background Photo */}
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700 brightness-75 group-hover:brightness-95"
+                loading="lazy"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src =
+                    'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80';
+                }}
+                className="w-full h-full object-cover object-center sm:group-hover:scale-105 transition-transform duration-500 brightness-75 sm:group-hover:brightness-95"
               />
 
               {/* Gradient Scrim */}
@@ -78,7 +83,7 @@ export const VibeShowcaseSection: React.FC<VibeShowcaseSectionProps> = ({
                   {item.badge}
                 </span>
 
-                <div className="p-2 rounded-full bg-black/40 backdrop-blur-md text-white/80 opacity-0 group-hover:opacity-100 transition-opacity border border-white/10">
+                <div className="p-2 rounded-full bg-black/40 backdrop-blur-md text-white/80 opacity-0 sm:group-hover:opacity-100 transition-opacity border border-white/10">
                   <Maximize2 className="h-4 w-4" />
                 </div>
               </div>
@@ -88,7 +93,7 @@ export const VibeShowcaseSection: React.FC<VibeShowcaseSectionProps> = ({
                 <span className="text-[11px] uppercase tracking-widest text-gold-400 font-bold">
                   {item.category}
                 </span>
-                <h3 className="text-xl sm:text-2xl font-display font-bold text-white group-hover:text-gold-200 transition-colors">
+                <h3 className="text-xl sm:text-2xl font-display font-bold text-white sm:group-hover:text-gold-200 transition-colors">
                   {item.title}
                 </h3>
                 <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed opacity-90">

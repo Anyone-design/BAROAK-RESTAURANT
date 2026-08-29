@@ -73,18 +73,23 @@ export const EventsAndAmenitiesSection: React.FC<EventsAndAmenitiesSectionProps>
           {events.map((event, idx) => (
             <motion.div
               key={event.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.15 }}
-              className="rounded-3xl bg-charcoal-900/90 border border-white/10 hover:border-gold-500/40 overflow-hidden flex flex-col justify-between group hover:shadow-2xl hover:shadow-black/90 transition-all duration-300"
+              viewport={{ once: true, margin: '-30px' }}
+              transition={{ duration: 0.4, delay: idx * 0.1 }}
+              className="rounded-3xl bg-charcoal-900/90 border border-white/10 dish-card-hover overflow-hidden flex flex-col justify-between group shadow-xl gpu-layer"
             >
               {/* Event Image */}
               <div className="relative h-56 w-full overflow-hidden bg-charcoal-950">
                 <img
                   src={event.image}
                   alt={event.title}
-                  className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700 brightness-85 group-hover:brightness-100"
+                  loading="lazy"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src =
+                      'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=800&q=80';
+                  }}
+                  className="w-full h-full object-cover object-center sm:group-hover:scale-105 transition-transform duration-500 brightness-85 sm:group-hover:brightness-100"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900 via-transparent to-black/40" />
 
@@ -103,7 +108,7 @@ export const EventsAndAmenitiesSection: React.FC<EventsAndAmenitiesSectionProps>
               {/* Event Content */}
               <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                 <div className="space-y-2">
-                  <h3 className="text-xl font-display font-bold text-white group-hover:text-gold-300 transition-colors">
+                  <h3 className="text-xl font-display font-bold text-white sm:group-hover:text-gold-300 transition-colors">
                     {event.title}
                   </h3>
                   <p className="text-xs text-slate-300 leading-relaxed">

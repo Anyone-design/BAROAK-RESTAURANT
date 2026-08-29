@@ -102,12 +102,19 @@ export const ReservationEngine: React.FC = () => {
     }
 
     if (currentStep === 3) {
-      if (!formData.name.trim()) newErrors.name = 'Full name is required';
-      if (!formData.phone.trim() || formData.phone.length < 10) {
-        newErrors.phone = 'Valid 10-digit phone number is required';
+      if (!formData.name.trim()) {
+        newErrors.name = 'Full name is required';
       }
-      if (!formData.email.trim() || !formData.email.includes('@')) {
-        newErrors.email = 'Valid email address is required';
+      if (!formData.phone.trim()) {
+        newErrors.phone = 'Mobile number is required';
+      } else if (formData.phone.length !== 10) {
+        newErrors.phone = 'Please enter a 10-digit mobile number';
+      } else if (!/^[6-9]\d{9}$/.test(formData.phone)) {
+        newErrors.phone = 'Please enter a valid Indian mobile number (e.g. starting with 6, 7, 8, or 9)';
+      }
+
+      if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+        newErrors.email = 'Valid email address is required (e.g. name@example.com)';
       }
     }
 
@@ -456,18 +463,38 @@ export const ReservationEngine: React.FC = () => {
                 {/* Phone & Email */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300">
-                      Mobile Number (WhatsApp) *
-                    </label>
-                    <div className="relative">
+                    <div className="flex items-center justify-between">
+                      <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300">
+                        Mobile Number (WhatsApp) *
+                      </label>
+                      <span className={`text-[10px] font-mono ${formData.phone.length === 10 ? 'text-emerald-400 font-bold' : 'text-slate-400'}`}>
+                        {formData.phone.length}/10 digits {formData.phone.length === 10 ? '✓' : ''}
+                      </span>
+                    </div>
+                    <div className="relative flex items-center">
+                      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-xs font-bold text-gold-400 select-none pointer-events-none border-r border-white/10 pr-2.5">
+                        +91
+                      </span>
                       <input
                         type="tel"
-                        placeholder="+91 98765 43210"
+                        inputMode="numeric"
+                        pattern="[0-9]{10}"
+                        maxLength={10}
+                        autoComplete="tel-national"
+                        placeholder="98765 43210"
                         value={formData.phone}
-                        onChange={(e) =>
-                          setFormData({ ...formData, phone: e.target.value })
-                        }
-                        className="w-full bg-charcoal-800/80 border border-white/10 rounded-2xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-gold-500/60"
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/\D/g, '').slice(0, 10);
+                          setFormData({ ...formData, phone: val });
+                          if (errors.phone) {
+                            setErrors((prev) => {
+                              const copy = { ...prev };
+                              delete copy.phone;
+                              return copy;
+                            });
+                          }
+                        }}
+                        className="w-full bg-charcoal-800/80 border border-white/10 rounded-2xl pl-16 pr-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-gold-500/60 font-mono tracking-wide transition-colors"
                       />
                     </div>
                     {errors.phone && (
@@ -627,7 +654,7 @@ export const ReservationEngine: React.FC = () => {
                 <div>
                   <span className="text-slate-400 block text-[11px]">Guest Phone:</span>
                   <span className="font-semibold text-white">
-                    {confirmationData.phone}
+                    +91 {confirmationData.phone}
                   </span>
                 </div>
               </div>

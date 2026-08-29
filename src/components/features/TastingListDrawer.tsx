@@ -102,11 +102,15 @@ export const TastingListDrawer: React.FC<TastingListDrawerProps> = ({
                       <img
                         src={dish.image}
                         alt={dish.name}
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src =
+                            'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80';
+                        }}
                         onClick={() => {
                           onClose();
                           onOpenDishModal(dish);
                         }}
-                        className="h-16 w-16 rounded-xl object-cover cursor-pointer shrink-0 group-hover:scale-105 transition-transform"
+                        className="h-16 w-16 rounded-xl object-cover cursor-pointer shrink-0 sm:group-hover:scale-105 transition-transform"
                       />
                       <div className="flex-1 min-w-0">
                         <h4
