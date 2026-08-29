@@ -1,0 +1,152 @@
+{
+  "name": "BAROAK",
+  "fullName": "BAROAK — Craft Kitchen, Botanical Bar & Lounge",
+  "tagline": "Craft Kitchen, Botanical Bar & Lounge",
+  "heroHeadline": "Where Artisanal Gastronomy Meets Unhurried Oak Elegance",
+  "heroSubheadline": "A refined sensory sanctuary in Sector 15A Noida. Immerse yourself in warm oak aesthetics, handcrafted botanical mixology, wood-fired delicacies, and soulful dining.",
+  "about": "BAROAK was conceived as an unhurried retreat from the frenetic pace of NCR. Designed with deep oak textures, supple cognac leather, ambient amber lighting, and a lush outdoor terrace, we invite you to savor thoughtful conversations, progressive North Indian fusion, artisanal wood-fired fare, and Pan-Asian artistry.",
+  "location": {
+    "address": "Rajnigandha Market, Sector 15A, Noida, Uttar Pradesh 201301",
+    "shortAddress": "Sector 15A, Noida",
+    "landmark": "Adjacent to Rajnigandha Chowk, 3 mins from Sec 15 Metro",
+    "googleMapsUrl": "https://maps.app.goo.gl/3pTcSieSniSQrZba8",
+    "coordinates": {
+      "lat": 28.5789902,
+      "lng": 77.3084106
+    }
+  },
+  "contact": {
+    "phone": "+91 98711 02444",
+    "altPhone": "+91 98118 73322",
+    "email": "reservations@baroaknoida.com",
+    "eventsEmail": "events@baroaknoida.com"
+  },
+  "hours": {
+    "days": "Monday – Sunday",
+    "timing": "12:00 PM – 12:00 AM",
+    "kitchenCloses": "11:30 PM",
+    "happyHours": "Mon – Thu, 4:00 PM – 8:00 PM (1+1 on Craft Cocktails)",
+    "sundayBrunch": "Sunday, 12:30 PM – 4:30 PM"
+  },
+  "costForTwo": "₹1,600 – ₹2,200 (approx. with craft beverages)",
+  "cuisineTypes": ["Modern North Indian", "Wood-Fired Artisanal", "Pan-Asian & Dim Sum", "Progressive European", "Botanical Mixology"],
+  "stats": [
+    { "label": "Google Rating", "value": "4.2★", "subtext": "over 1,200+ diner reviews" },
+    { "label": "Artisanal Recipes", "value": "60+", "subtext": "curated by master culinary chefs" },
+    { "label": "Bespoke Cocktails", "value": "24+", "subtext": "botanical & oak-aged spirits" },
+    { "label": "Atmospheric Zones", "value": "3", "subtext": "Oak Lounge, Bar & Al Fresco Patio" }
+  ],
+  "gallery": [
+    {
+      "id": "oak-lounge",
+      "title": "The Oak Lounge",
+      "category": "Interiors",
+      "description": "Rich mahogany paneling, plush Chesterfield cognac leather, and warm dim amber chandeliers create an intimate setting for long conversations.",
+      "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
+      "badge": "Signature Interior"
+    },
+    {
+      "id": "botanical-bar",
+      "title": "The Botanical Mixology Bar",
+      "category": "Cocktails & Spirits",
+      "description": "Illuminated quartz bar top displaying rare small-batch spirits, house-infused aromatic botanicals, and bespoke crystal glassware.",
+      "image": "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?auto=format&fit=crop&w=1200&q=80",
+      "badge": "Craft Bar"
+    },
+    {
+      "id": "alfresco-patio",
+      "title": "The Al Fresco Courtyard",
+      "category": "Outdoor Dining",
+      "description": "Verdant foliage, string fairy lights, and climate-controlled pergola seating for breezy sundowners and starry night dinners.",
+      "image": "https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=1200&q=80",
+      "badge": "Garden Terrace"
+    },
+    {
+      "id": "culinary-theatre",
+      "title": "Live Culinary Hearth & Tandoor",
+      "category": "Kitchen",
+      "description": "Watch our culinary artisans craft blistered wood-fired pizzas, clay-oven kebabs, and delicate dim sums in our display hearth.",
+      "image": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80",
+      "badge": "Live Kitchen"
+    }
+  ],
+  "events": [
+    {
+      "id": "acoustic-fridays",
+      "title": "Acoustic Unplugged Evenings",
+      "schedule": "Every Friday • 8:00 PM Onwards",
+      "category": "Live Music",
+      "description": "Intimate soulful acoustic guitar and vocal performances paired with our signature single malts and tapas.",
+      "highlight": "Complimentary Bar Tapas with Premium Pours",
+      "image": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "id": "jazz-gin-sundowners",
+      "title": "Botanical Gin & Jazz Sundowners",
+      "schedule": "Every Saturday • 7:00 PM Onwards",
+      "category": "Nightlife & Mixology",
+      "description": "Smooth live jazz trio sets the mood on the terrace as our mixologists pour rosemary and smoked juniper gin concoctions.",
+      "highlight": "Specialty Botanical Cocktail Flight at ₹1,199",
+      "image": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "id": "sunday-long-brunch",
+      "title": "The Connoisseur's Sunday Long Brunch",
+      "schedule": "Sundays • 12:30 PM – 4:30 PM",
+      "category": "Dining Experience",
+      "description": "An extravagant four-course curated table-service brunch with artisanal wood-fired flatbreads, dim sum trolleys, and live dessert flambé.",
+      "highlight": "Unlimited Sangria & Craft Beer Add-on Available",
+      "image": "https://images.unsplash.com/photo-1533777857889-4be7c70e33f7?auto=format&fit=crop&w=800&q=80"
+    }
+  ],
+  "amenities": [
+    {
+      "id": "valet",
+      "name": "Complimentary Valet Parking",
+      "description": "Dedicated valet chauffeurs ensuring hassle-free parking right at the entrance.",
+      "icon": "Car"
+    },
+    {
+      "id": "patio",
+      "name": "Verdant Outdoor Garden Patio",
+      "description": "Lush open-air seating with ambient misters in summer and heaters in winter.",
+      "icon": "Trees"
+    },
+    {
+      "id": "mixology",
+      "name": "Botanical Craft Cocktail Bar",
+      "description": "House-infused spirits, clear craft ice spheres, and botanical syrups.",
+      "icon": "Wine"
+    },
+    {
+      "id": "music",
+      "name": "Curated Audiophile Acoustics",
+      "description": "Mellow jazz, lo-fi beats, and weekend acoustic sessions tuned for effortless conversation.",
+      "icon": "Music"
+    },
+    {
+      "id": "wifi",
+      "name": "Gigabit Wi-Fi & Work-Dine Nooks",
+      "description": "High-speed seamless connectivity for power lunches and discreet business meetings.",
+      "icon": "Wifi"
+    },
+    {
+      "id": "payments",
+      "name": "Contactless & Universal Payments",
+      "description": "Accepting NFC tap-to-pay, all major credit cards, Apple Pay, and instant UPI.",
+      "icon": "CreditCard"
+    },
+    {
+      "id": "private-dining",
+      "name": "Private Dining & Event Alcoves",
+      "description": "Intimate curtained corners and reserved sections for celebrations up to 150 guests.",
+      "icon": "Users"
+    },
+    {
+      "id": "accessible",
+      "name": "Step-Free Accessibility",
+      "description": "Wheelchair friendly entrance, wide aisles, and priority assistance.",
+      "icon": "ShieldCheck"
+    }
+  ]
+}
