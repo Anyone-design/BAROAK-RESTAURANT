@@ -21,7 +21,7 @@ export const VibeShowcaseSection: React.FC<VibeShowcaseSectionProps> = ({
   };
 
   return (
-    <section id="vibe" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="vibe" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
       {/* Title & Philosophy */}
       <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/20 text-xs uppercase tracking-widest text-gold-400 font-bold">

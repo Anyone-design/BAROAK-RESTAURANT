@@ -24,48 +24,48 @@ export const ReservationSection: React.FC<ReservationSectionProps> = ({
   const [activeTab, setActiveTab] = useState<'table' | 'event'>('table');
 
   return (
-    <section id="reservation" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="reservation" className="relative py-20 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
       {/* Ambient Section Glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 sm:w-[500px] h-80 sm:h-[500px] bg-gold-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-64 sm:w-80 h-64 sm:h-80 bg-amber-600/10 rounded-full blur-3xl pointer-events-none" />
 
       {/* Title & Section Header */}
-      <div className="relative z-10 text-center max-w-3xl mx-auto space-y-4 mb-14">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/15 border border-gold-500/30 text-xs uppercase tracking-widest text-gold-300 font-bold shadow-lg shadow-gold-500/10">
+      <div className="relative z-10 text-center max-w-3xl mx-auto space-y-4 mb-12 sm:mb-14">
+        <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-gold-500/15 border border-gold-500/30 text-[11px] sm:text-xs uppercase tracking-widest text-gold-300 font-bold shadow-lg shadow-gold-500/10">
           <Calendar className="h-3.5 w-3.5 text-gold-400" />
           Real-Time Hospitality & Reservations
         </div>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black text-white tracking-tight">
           Secure Your Table or Curate an Event
         </h2>
-        <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+        <p className="text-slate-300 text-xs sm:text-base leading-relaxed px-2">
           Whether planning an intimate date night in our oak lounge or hosting a corporate buyout on the garden terrace, our team ensures seamless hospitality.
         </p>
 
         {/* Tab Toggle between Dining Table & Private Event */}
-        <div className="inline-flex p-1.5 rounded-2xl bg-charcoal-950/90 border border-gold-500/30 mt-6 shadow-2xl backdrop-blur-md">
+        <div className="flex flex-col sm:inline-flex sm:flex-row p-1.5 rounded-2xl bg-charcoal-950/90 border border-gold-500/30 mt-6 shadow-2xl backdrop-blur-md w-full sm:w-auto gap-1">
           <button
             onClick={() => setActiveTab('table')}
-            className={`flex items-center gap-2 px-6 py-3 rounded-xl text-xs sm:text-sm font-bold uppercase tracking-wider transition-all ${
+            className={`flex items-center justify-center gap-2 px-4 sm:px-6 py-3 rounded-xl text-xs sm:text-sm font-bold uppercase tracking-wider transition-all ${
               activeTab === 'table'
-                ? 'bg-gradient-to-r from-gold-400 via-gold-500 to-amber-500 text-obsidian-950 shadow-lg shadow-gold-500/30 font-extrabold scale-100'
+                ? 'bg-gradient-to-r from-gold-400 via-gold-500 to-amber-500 text-obsidian-950 shadow-lg shadow-gold-500/30 font-extrabold'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
-            <Calendar className="h-4 w-4" />
+            <Calendar className="h-4 w-4 shrink-0" />
             <span>Table Reservation (1–16 Guests)</span>
           </button>
 
           <button
             onClick={() => setActiveTab('event')}
-            className={`flex items-center gap-2 px-6 py-3 rounded-xl text-xs sm:text-sm font-bold uppercase tracking-wider transition-all ${
+            className={`flex items-center justify-center gap-2 px-4 sm:px-6 py-3 rounded-xl text-xs sm:text-sm font-bold uppercase tracking-wider transition-all ${
               activeTab === 'event'
-                ? 'bg-gradient-to-r from-gold-400 via-gold-500 to-amber-500 text-obsidian-950 shadow-lg shadow-gold-500/30 font-extrabold scale-100'
+                ? 'bg-gradient-to-r from-gold-400 via-gold-500 to-amber-500 text-obsidian-950 shadow-lg shadow-gold-500/30 font-extrabold'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
-            <Users className="h-4 w-4" />
-            <span>Private Party & Bulk Events (15–150 Pax)</span>
+            <Users className="h-4 w-4 shrink-0" />
+            <span>Private Party & Events (15–150 Pax)</span>
           </button>
         </div>
       </div>

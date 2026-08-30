@@ -107,7 +107,7 @@ export const DigitalMenuSection: React.FC<DigitalMenuSectionProps> = ({
   const remainingCount = filteredItems.length - PREVIEW_LIMIT;
 
   return (
-    <section id="menu" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="menu" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
       {/* Section Title & Description */}
       <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/20 text-xs uppercase tracking-widest text-gold-400 font-bold">

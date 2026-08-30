@@ -52,9 +52,9 @@ export const EventsAndAmenitiesSection: React.FC<EventsAndAmenitiesSectionProps>
   };
 
   return (
-    <div className="space-y-24">
+    <div className="space-y-16 sm:space-y-24 overflow-hidden">
       {/* EVENTS & NIGHTLIFE SECTION */}
-      <section id="events" className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <section id="events" className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/20 text-xs uppercase tracking-widest text-gold-400 font-bold">
             <Music className="h-3.5 w-3.5" />
@@ -139,7 +139,7 @@ export const EventsAndAmenitiesSection: React.FC<EventsAndAmenitiesSectionProps>
       </section>
 
       {/* AMENITIES & HOSPITALITY SECTION */}
-      <section id="amenities" className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/10">
+      <section id="amenities" className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/10 overflow-hidden">
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/20 text-xs uppercase tracking-widest text-gold-400 font-bold">
             <ShieldCheck className="h-3.5 w-3.5" />

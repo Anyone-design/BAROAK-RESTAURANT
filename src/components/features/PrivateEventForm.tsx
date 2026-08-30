@@ -216,7 +216,7 @@ export const PrivateEventForm: React.FC = () => {
             }
             className="w-full bg-charcoal-800/80 border border-white/10 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500/60"
           >
-            <option value="lunch" className="bg-charcoal-900">Afternoon / Lunch (12:30 PM – 4:00 PM)</option>
+            <option value="lunch" className="bg-charcoal-900">Afternoon / Lunch (1:00 PM – 4:30 PM)</option>
             <option value="evening-cocktails" className="bg-charcoal-900">Evening Sundowner & Dinner (7:00 PM – 11:30 PM)</option>
             <option value="all-night" className="bg-charcoal-900">Late Night Exclusive (8:30 PM – Close)</option>
           </select>

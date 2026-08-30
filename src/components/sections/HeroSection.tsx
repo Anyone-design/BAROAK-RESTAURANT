@@ -51,14 +51,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/5 border border-gold-500/30 backdrop-blur-md shadow-lg shadow-gold-500/5 text-xs text-gold-300"
+          className="inline-flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/5 border border-gold-500/30 backdrop-blur-md shadow-lg shadow-gold-500/5 text-[11px] sm:text-xs text-gold-300 max-w-full"
         >
-          <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping inline-block" />
-          <span className="font-semibold tracking-wide">
-            Open Today • {todayTiming}
+          <span className="flex items-center gap-1.5">
+            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping inline-block shrink-0" />
+            <span className="font-semibold tracking-wide">
+              Open Today • {todayTiming}
+            </span>
           </span>
-          <span className="text-white/40">•</span>
-          <span className="text-slate-300 font-medium">
+          <span className="text-white/40 hidden xs:inline">•</span>
+          <span className="text-slate-300 font-medium truncate max-w-[240px] xs:max-w-none">
             Rajnigandha Market, Sector 15A Noida
           </span>
         </motion.div>
@@ -70,22 +72,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           transition={{ duration: 0.7, delay: 0.1 }}
           className="space-y-4"
         >
-          <div className="flex items-center justify-center gap-3">
-            <div className="h-px w-12 bg-gradient-to-r from-transparent to-gold-400/60" />
-            <span className="text-xs sm:text-sm uppercase tracking-[0.35em] text-gold-400 font-bold">
+          <div className="flex items-center justify-center gap-2 sm:gap-3">
+            <div className="h-px w-8 sm:w-12 bg-gradient-to-r from-transparent to-gold-400/60" />
+            <span className="text-[11px] sm:text-sm uppercase tracking-[0.25em] sm:tracking-[0.35em] text-gold-400 font-bold">
               Craft Kitchen & Botanical Lounge
             </span>
-            <div className="h-px w-12 bg-gradient-to-l from-transparent to-gold-400/60" />
+            <div className="h-px w-8 sm:w-12 bg-gradient-to-l from-transparent to-gold-400/60" />
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-black text-white tracking-tight leading-[1.08]">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-black text-white tracking-tight leading-[1.1]">
             Where Artisanal Gastronomy Meets{' '}
-            <span className="text-gold-gradient italic font-serif">
+            <span className="text-gold-gradient italic font-serif block sm:inline">
               Unhurried Elegance
             </span>
           </h1>
 
-          <p className="max-w-2xl mx-auto text-slate-300 text-sm sm:text-base md:text-lg font-normal leading-relaxed pt-2">
+          <p className="max-w-2xl mx-auto text-slate-300 text-xs sm:text-base md:text-lg font-normal leading-relaxed pt-1 sm:pt-2 px-2">
             Step inside a moody oak haven of handcrafted botanical cocktails, progressive North Indian fusion, artisanal wood-fired pizzas, and soul-stirring music in Noida.
           </p>
         </motion.div>

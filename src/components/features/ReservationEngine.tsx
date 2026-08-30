@@ -160,13 +160,13 @@ export const ReservationEngine: React.FC = () => {
       {/* Step Indicator Header */}
       <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
         {[
-          { num: 1, label: 'Date & Time' },
-          { num: 2, label: 'Seating & Vibe' },
-          { num: 3, label: 'Guest Details' },
+          { num: 1, label: 'Date & Time', short: 'Date' },
+          { num: 2, label: 'Seating & Vibe', short: 'Seating' },
+          { num: 3, label: 'Guest Details', short: 'Details' },
         ].map((item) => (
           <div
             key={item.num}
-            className={`flex items-center gap-3 transition-colors ${
+            className={`flex items-center gap-2 sm:gap-3 transition-colors ${
               step === item.num
                 ? 'text-gold-400 font-semibold'
                 : step > item.num
@@ -175,7 +175,7 @@ export const ReservationEngine: React.FC = () => {
             }`}
           >
             <span
-              className={`h-8 w-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
+              className={`h-7 w-7 sm:h-8 sm:w-8 rounded-full flex items-center justify-center text-xs font-bold transition-all shrink-0 ${
                 step === item.num
                   ? 'bg-gold-500 text-obsidian-950 shadow-md shadow-gold-500/30 ring-2 ring-gold-400/50'
                   : step > item.num
@@ -185,7 +185,8 @@ export const ReservationEngine: React.FC = () => {
             >
               {step > item.num ? '✓' : item.num}
             </span>
-            <span className="hidden sm:inline text-sm">{item.label}</span>
+            <span className="hidden sm:inline text-xs sm:text-sm">{item.label}</span>
+            <span className="sm:hidden text-[11px] font-bold">{item.short}</span>
           </div>
         ))}
       </div>
