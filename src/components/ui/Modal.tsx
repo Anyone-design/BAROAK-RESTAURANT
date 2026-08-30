@@ -11,7 +11,9 @@ export interface ModalProps {
   children: React.ReactNode;
   maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl';
   className?: string;
+  bodyClassName?: string;
   hideCloseButton?: boolean;
+  noPadding?: boolean;
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -22,7 +24,9 @@ export const Modal: React.FC<ModalProps> = ({
   children,
   maxWidth = '2xl',
   className,
+  bodyClassName,
   hideCloseButton = false,
+  noPadding = false,
 }) => {
   // Close modal on ESC key
   useEffect(() => {
@@ -54,32 +58,37 @@ export const Modal: React.FC<ModalProps> = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-          {/* Backdrop */}
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+          {/* Backdrop with silky blur */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
             onClick={onClose}
-            className="fixed inset-0 bg-obsidian-950/85 backdrop-blur-md"
+            className="fixed inset-0 bg-obsidian-950/80 backdrop-blur-md cursor-pointer"
           />
 
           {/* Modal Content Box */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            initial={{ opacity: 0, scale: 0.94, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, scale: 0.96, y: 10 }}
+            transition={{
+              type: 'spring',
+              damping: 28,
+              stiffness: 350,
+              mass: 0.8,
+            }}
             className={cn(
-              'relative w-full bg-charcoal-900 border border-gold-500/20 rounded-3xl shadow-2xl shadow-black/80 overflow-hidden z-10 my-8',
+              'relative w-full bg-charcoal-900 border border-gold-500/30 rounded-3xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] overflow-hidden z-10 my-auto transform-gpu will-change-transform',
               maxWidthClasses[maxWidth],
               className
             )}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header if title exists */}
-            {(title || !hideCloseButton) && (
+            {(title || (!hideCloseButton && !noPadding)) && (
               <div className="flex items-start justify-between p-6 sm:p-7 border-b border-white/5 bg-charcoal-800/40">
                 {title && (
                   <div>
@@ -94,7 +103,7 @@ export const Modal: React.FC<ModalProps> = ({
                 {!hideCloseButton && (
                   <button
                     onClick={onClose}
-                    className="p-2 rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-colors ml-auto -mr-2 -mt-2"
+                    className="p-2 rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-colors ml-auto -mr-2 -mt-2 focus:outline-none"
                     aria-label="Close modal"
                   >
                     <X className="h-5 w-5" />
@@ -103,10 +112,27 @@ export const Modal: React.FC<ModalProps> = ({
               </div>
             )}
 
+            {/* If noPadding with close button, show floating close button */}
+            {noPadding && !hideCloseButton && (
+              <button
+                onClick={onClose}
+                className="absolute top-4 right-4 z-20 p-2 rounded-full bg-obsidian-950/70 hover:bg-obsidian-950 text-slate-300 hover:text-white border border-white/15 backdrop-blur-md transition-all shadow-lg focus:outline-none"
+                aria-label="Close modal"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            )}
+
             {/* Body */}
-            <div className="p-6 sm:p-7 max-h-[80vh] overflow-y-auto custom-scrollbar">
-              {children}
-            </div>
+            {noPadding ? (
+              <div className={cn('max-h-[88vh] overflow-y-auto custom-scrollbar', bodyClassName)}>
+                {children}
+              </div>
+            ) : (
+              <div className={cn('p-6 sm:p-7 max-h-[82vh] overflow-y-auto custom-scrollbar', bodyClassName)}>
+                {children}
+              </div>
+            )}
           </motion.div>
         </div>
       )}

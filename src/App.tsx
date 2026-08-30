@@ -122,10 +122,7 @@ export function App() {
       <DishModal
         item={selectedDish}
         isOpen={isDishModalOpen}
-        onClose={() => {
-          setIsDishModalOpen(false);
-          setSelectedDish(null);
-        }}
+        onClose={() => setIsDishModalOpen(false)}
         isSaved={selectedDish ? savedItemIds.has(selectedDish.id) : false}
         onToggleSave={handleToggleSaveItem}
       />

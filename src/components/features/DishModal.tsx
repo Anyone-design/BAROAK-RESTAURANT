@@ -21,43 +21,54 @@ export const DishModal: React.FC<DishModalProps> = ({
   isSaved = false,
   onToggleSave,
 }) => {
-  if (!item) return null;
+  const [displayItem, setDisplayItem] = React.useState<MenuItem | null>(item);
+
+  React.useEffect(() => {
+    if (item) {
+      setDisplayItem(item);
+    }
+  }, [item]);
+
+  if (!displayItem) return null;
+
+  const currentItem = displayItem;
 
   return (
     <Modal
       isOpen={isOpen}
       onClose={onClose}
       maxWidth="3xl"
-      className="p-0 overflow-hidden border-gold-500/30"
+      noPadding
+      className="p-0 overflow-hidden border-gold-500/30 shadow-2xl"
     >
       <div className="grid grid-cols-1 md:grid-cols-2">
         {/* Left Column: Image with overlays */}
-        <div className="relative h-64 md:h-full min-h-[280px] bg-charcoal-950 overflow-hidden">
+        <div className="relative h-64 md:h-full min-h-[300px] bg-charcoal-950 overflow-hidden">
           <img
-            src={item.image}
-            alt={item.name}
+            src={currentItem.image}
+            alt={currentItem.name}
             onError={(e) => {
               (e.target as HTMLImageElement).src =
                 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80';
             }}
-            className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
+            className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900 via-transparent to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-transparent to-black/30" />
 
           {/* Badges on image */}
           <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-            {item.badge && (
+            {currentItem.badge && (
               <span className="bg-gold-500 text-obsidian-950 text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                {item.badge}
+                {currentItem.badge}
               </span>
             )}
           </div>
 
           <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white">
             <span className="text-2xl font-bold font-display text-gold-300">
-              {formatCurrency(item.price)}
+              {formatCurrency(currentItem.price)}
             </span>
-            <span className="text-xs uppercase tracking-widest text-slate-300 bg-black/50 px-2.5 py-1 rounded backdrop-blur-md">
+            <span className="text-xs uppercase tracking-widest text-slate-300 bg-black/60 px-2.5 py-1 rounded-lg backdrop-blur-md border border-white/10">
               Freshly Prepared
             </span>
           </div>
@@ -68,7 +79,7 @@ export const DishModal: React.FC<DishModalProps> = ({
           <div className="space-y-4">
             {/* Dietary Tags */}
             <div className="flex flex-wrap items-center gap-1.5">
-              {item.dietary.map((tag) => (
+              {currentItem.dietary.map((tag) => (
                 <DietaryBadge key={tag} type={tag} size="sm" />
               ))}
             </div>
@@ -76,7 +87,7 @@ export const DishModal: React.FC<DishModalProps> = ({
             {/* Title */}
             <div>
               <h2 className="text-2xl sm:text-3xl font-display font-bold text-white leading-tight">
-                {item.name}
+                {currentItem.name}
               </h2>
               <p className="text-xs uppercase tracking-widest text-gold-400/80 font-semibold mt-1">
                 BAROAK Signature Selection
@@ -85,17 +96,17 @@ export const DishModal: React.FC<DishModalProps> = ({
 
             {/* Description */}
             <p className="text-slate-300 text-sm leading-relaxed border-l-2 border-gold-500/40 pl-3 italic">
-              "{item.description}"
+              "{currentItem.description}"
             </p>
 
             {/* Flavor Profile */}
-            {item.flavorProfile && item.flavorProfile.length > 0 && (
+            {currentItem.flavorProfile && currentItem.flavorProfile.length > 0 && (
               <div className="space-y-1.5 pt-2">
                 <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
                   Flavor Profile
                 </span>
                 <div className="flex flex-wrap gap-1.5">
-                  {item.flavorProfile.map((note) => (
+                  {currentItem.flavorProfile.map((note) => (
                     <span
                       key={note}
                       className="text-xs bg-white/5 border border-white/10 text-slate-200 px-2.5 py-1 rounded-lg"
@@ -108,24 +119,24 @@ export const DishModal: React.FC<DishModalProps> = ({
             )}
 
             {/* Key Ingredients */}
-            {item.ingredients && item.ingredients.length > 0 && (
+            {currentItem.ingredients && currentItem.ingredients.length > 0 && (
               <div className="space-y-1.5 pt-1">
                 <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
                   Artisanal Ingredients
                 </span>
                 <p className="text-xs text-slate-400 leading-relaxed">
-                  {item.ingredients.join(' • ')}
+                  {currentItem.ingredients.join(' • ')}
                 </p>
               </div>
             )}
 
             {/* Sommelier / Cocktail Pairing Recommendation */}
-            {item.pairing && (
+            {currentItem.pairing && (
               <div className="p-3 rounded-xl bg-gold-500/10 border border-gold-500/20 text-xs text-gold-300 flex items-start gap-2.5">
                 <Wine className="h-4 w-4 shrink-0 mt-0.5 text-gold-400" />
                 <div>
                   <span className="font-semibold block text-gold-200">Recommended Pairing</span>
-                  <span className="text-slate-300">{item.pairing}</span>
+                  <span className="text-slate-300">{currentItem.pairing}</span>
                 </div>
               </div>
             )}
@@ -138,7 +149,7 @@ export const DishModal: React.FC<DishModalProps> = ({
                 variant={isSaved ? 'gold' : 'outline'}
                 size="md"
                 className="w-full flex-1"
-                onClick={() => onToggleSave(item)}
+                onClick={() => onToggleSave(currentItem)}
               >
                 {isSaved ? (
                   <>

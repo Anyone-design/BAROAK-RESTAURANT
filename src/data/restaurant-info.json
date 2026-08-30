@@ -23,10 +23,12 @@
   },
   "hours": {
     "days": "Monday – Sunday",
-    "timing": "12:00 PM – 12:00 AM",
+    "timing": "Mon–Fri: 2:00 PM – 12:00 AM | Sat–Sun: 1:00 PM – 12:00 AM",
+    "weekday": "Monday – Friday: 2:00 PM – 12:00 AM",
+    "weekend": "Saturday – Sunday: 1:00 PM – 12:00 AM",
     "kitchenCloses": "11:30 PM",
     "happyHours": "Mon – Thu, 4:00 PM – 8:00 PM (1+1 on Craft Cocktails)",
-    "sundayBrunch": "Sunday, 12:30 PM – 4:30 PM"
+    "sundayBrunch": "Sunday, 1:00 PM – 4:30 PM"
   },
   "costForTwo": "₹1,600 – ₹2,200 (approx. with craft beverages)",
   "cuisineTypes": ["Modern North Indian", "Wood-Fired Artisanal", "Pan-Asian & Dim Sum", "Progressive European", "Botanical Mixology"],

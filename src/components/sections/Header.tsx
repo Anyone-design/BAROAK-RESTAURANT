@@ -210,9 +210,12 @@ export const Header: React.FC<HeaderProps> = ({
                 <MapPin className="h-3.5 w-3.5 text-gold-400 shrink-0" />
                 <span>{restaurant.location.shortAddress}</span>
               </div>
-              <div className="text-xs text-slate-400 flex items-center gap-2">
-                <Clock className="h-3.5 w-3.5 text-gold-400 shrink-0" />
-                <span>{restaurant.hours.timing}</span>
+              <div className="text-xs text-slate-400 flex items-start gap-2">
+                <Clock className="h-3.5 w-3.5 text-gold-400 shrink-0 mt-0.5" />
+                <div className="space-y-0.5">
+                  <div>Mon–Fri: 2:00 PM – 12:00 AM</div>
+                  <div>Sat–Sun: 1:00 PM – 12:00 AM</div>
+                </div>
               </div>
 
               <div className="grid grid-cols-2 gap-3 pt-2">

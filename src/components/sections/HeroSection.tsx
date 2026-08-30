@@ -20,6 +20,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   restaurant,
   onScrollToSection,
 }) => {
+  const isWeekend = new Date().getDay() === 0 || new Date().getDay() === 6;
+  const todayTiming = isWeekend ? '1:00 PM – 12:00 AM' : '2:00 PM – 12:00 AM';
+
   return (
     <section
       id="hero"
@@ -52,7 +55,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         >
           <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping inline-block" />
           <span className="font-semibold tracking-wide">
-            Open Today • 12:00 PM – 12:00 AM
+            Open Today • {todayTiming}
           </span>
           <span className="text-white/40">•</span>
           <span className="text-slate-300 font-medium">
@@ -169,8 +172,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <span className="block text-[11px] uppercase tracking-wider text-slate-400 font-semibold">
                 Dining Hours
               </span>
-              <span className="text-xs font-bold text-white truncate block">
-                {restaurant.hours.timing}
+              <span className="text-xs font-bold text-white block">
+                Mon–Fri: 2PM–12AM • Sat–Sun: 1PM–12AM
               </span>
             </div>
           </div>

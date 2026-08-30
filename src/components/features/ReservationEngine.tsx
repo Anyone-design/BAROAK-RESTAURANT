@@ -18,14 +18,14 @@ import {
 } from 'lucide-react';
 
 const TIME_SLOTS = [
-  { id: '12:30 PM', label: '12:30 PM', session: 'Lunch' },
-  { id: '01:30 PM', label: '01:30 PM', session: 'Lunch' },
-  { id: '02:30 PM', label: '02:30 PM', session: 'Lunch' },
-  { id: '06:00 PM', label: '06:00 PM', session: 'Sundowner' },
-  { id: '07:15 PM', label: '07:15 PM', session: 'Dinner' },
-  { id: '08:30 PM', label: '08:30 PM', session: 'Dinner' },
-  { id: '09:45 PM', label: '09:45 PM', session: 'Dinner' },
-  { id: '10:30 PM', label: '10:30 PM', session: 'Late Night' },
+  { id: '01:00 PM', label: '01:00 PM', session: 'Weekend Brunch' },
+  { id: '02:00 PM', label: '02:00 PM', session: 'Afternoon / Lunch' },
+  { id: '03:30 PM', label: '03:30 PM', session: 'Lounge & Tapas' },
+  { id: '05:00 PM', label: '05:00 PM', session: 'Happy Hours' },
+  { id: '06:30 PM', label: '06:30 PM', session: 'Early Dinner' },
+  { id: '07:45 PM', label: '07:45 PM', session: 'Prime Dinner' },
+  { id: '09:00 PM', label: '09:00 PM', session: 'Dinner & Bar' },
+  { id: '10:15 PM', label: '10:15 PM', session: 'Late Night' },
 ];
 
 const SEATING_ZONES = [
@@ -75,7 +75,7 @@ export const ReservationEngine: React.FC = () => {
   // Form State
   const [formData, setFormData] = useState<TableReservation>({
     date: new Date(Date.now() + 86400000).toISOString().split('T')[0], // tomorrow
-    timeSlot: '08:30 PM',
+    timeSlot: '07:45 PM',
     guests: 2,
     seatingZone: 'indoor-oak-lounge',
     occasion: 'romantic-date',

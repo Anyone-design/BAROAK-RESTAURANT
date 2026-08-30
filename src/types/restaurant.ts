@@ -19,6 +19,8 @@ export interface ContactInfo {
 export interface HoursInfo {
   days: string;
   timing: string;
+  weekday?: string;
+  weekend?: string;
   kitchenCloses: string;
   happyHours: string;
   sundayBrunch: string;
