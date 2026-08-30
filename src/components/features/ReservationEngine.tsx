@@ -197,11 +197,11 @@ export const ReservationEngine: React.FC = () => {
           {step === 1 && (
             <motion.div
               key="step-1"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.25 }}
-              className="space-y-6"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.22, ease: 'easeOut' }}
+              className="space-y-6 gpu-layer"
             >
               {/* Date & Guest Count Controls */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -315,11 +315,11 @@ export const ReservationEngine: React.FC = () => {
           {step === 2 && (
             <motion.div
               key="step-2"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.25 }}
-              className="space-y-6"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.22, ease: 'easeOut' }}
+              className="space-y-6 gpu-layer"
             >
               {/* Seating Zones */}
               <div className="space-y-3">
@@ -421,15 +421,15 @@ export const ReservationEngine: React.FC = () => {
             </motion.div>
           )}
 
-          {/* STEP 3: Guest Contact Details */}
+          {/* STEP 3: Guest Details & Special Requests */}
           {step === 3 && (
             <motion.div
               key="step-3"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.25 }}
-              className="space-y-5"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.22, ease: 'easeOut' }}
+              className="space-y-5 gpu-layer"
             >
               <div className="p-4 rounded-2xl bg-gold-500/10 border border-gold-500/20 text-xs text-gold-300 flex items-center gap-3">
                 <ShieldCheck className="h-5 w-5 shrink-0 text-gold-400" />

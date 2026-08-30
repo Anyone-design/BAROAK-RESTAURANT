@@ -46,22 +46,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
       {/* Hero Content Container */}
       <div className="relative z-10 max-w-5xl mx-auto text-center space-y-8">
-        {/* Top Status & Location Badge */}
+        {/* Top Status Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/5 border border-gold-500/30 backdrop-blur-md shadow-lg shadow-gold-500/5 text-[11px] sm:text-xs text-gold-300 max-w-full"
+          className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-gold-500/30 backdrop-blur-md shadow-lg shadow-gold-500/5 text-xs text-gold-300 mx-auto"
         >
-          <span className="flex items-center gap-1.5">
-            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping inline-block shrink-0" />
-            <span className="font-semibold tracking-wide">
-              Open Today • {todayTiming}
-            </span>
-          </span>
-          <span className="text-white/40 hidden xs:inline">•</span>
-          <span className="text-slate-300 font-medium truncate max-w-[240px] xs:max-w-none">
-            Rajnigandha Market, Sector 15A Noida
+          <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping inline-block shrink-0" />
+          <span className="font-semibold tracking-wide">
+            Open Today • {todayTiming}
           </span>
         </motion.div>
 

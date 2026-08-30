@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { RestaurantData } from '@/types/restaurant';
 import { ReservationEngine } from '@/components/features/ReservationEngine';
 import { PrivateEventForm } from '@/components/features/PrivateEventForm';
@@ -80,39 +81,50 @@ export const ReservationSection: React.FC<ReservationSectionProps> = ({
           {/* Corner Ambient Glow Orb */}
           <div className="absolute -top-20 -right-20 w-64 h-64 bg-gold-500/15 rounded-full blur-3xl pointer-events-none" />
 
-          {activeTab === 'table' ? (
-            <div className="relative z-10">
-              <div className="mb-6 pb-5 border-b border-gold-500/20">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/15 border border-gold-500/30 text-[11px] font-bold text-gold-300 mb-3 shadow-inner">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping inline-block" />
-                  <span>VIP Priority Desk • Instant Confirmation</span>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.22, ease: 'easeOut' }}
+              className="relative z-10 gpu-layer"
+            >
+              {activeTab === 'table' ? (
+                <div>
+                  <div className="mb-6 pb-5 border-b border-gold-500/20">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/15 border border-gold-500/30 text-[11px] font-bold text-gold-300 mb-3 shadow-inner">
+                      <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping inline-block" />
+                      <span>VIP Priority Desk • Instant Confirmation</span>
+                    </div>
+                    <h3 className="text-xl sm:text-2xl font-display font-bold text-white">
+                      Reserve Your Dining Experience
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-300 mt-1">
+                      Instant table reservation with preferred seating section selection & special requests.
+                    </p>
+                  </div>
+                  <ReservationEngine />
                 </div>
-                <h3 className="text-xl sm:text-2xl font-display font-bold text-white">
-                  Reserve Your Dining Experience
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-300 mt-1">
-                  Instant table reservation with preferred seating section selection & special requests.
-                </p>
-              </div>
-              <ReservationEngine />
-            </div>
-          ) : (
-            <div className="relative z-10">
-              <div className="mb-6 pb-5 border-b border-gold-500/20">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/15 border border-gold-500/30 text-[11px] font-bold text-gold-300 mb-3 shadow-inner">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping inline-block" />
-                  <span>Curated Events Desk • Bespoke Buyouts</span>
+              ) : (
+                <div>
+                  <div className="mb-6 pb-5 border-b border-gold-500/20">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/15 border border-gold-500/30 text-[11px] font-bold text-gold-300 mb-3 shadow-inner">
+                      <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping inline-block" />
+                      <span>Curated Events Desk • Bespoke Buyouts</span>
+                    </div>
+                    <h3 className="text-xl sm:text-2xl font-display font-bold text-white">
+                      Plan a Private Party or Corporate Mixer
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-300 mt-1">
+                      Custom cocktail flights, tandoor small plates, audio setups & bespoke terrace buyouts.
+                    </p>
+                  </div>
+                  <PrivateEventForm />
                 </div>
-                <h3 className="text-xl sm:text-2xl font-display font-bold text-white">
-                  Plan a Private Party or Corporate Mixer
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-300 mt-1">
-                  Custom cocktail flights, tandoor small plates, audio setups & bespoke terrace buyouts.
-                </p>
-              </div>
-              <PrivateEventForm />
-            </div>
-          )}
+              )}
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* Right Info & Location Card (4 Cols) */}
